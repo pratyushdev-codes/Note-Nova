@@ -7,7 +7,7 @@ const AddNote = () => {
   const { addNote } = context;
   const [note, setNote] = useState({ title: '', description: '', tag: 'default' });
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
   };
@@ -24,7 +24,7 @@ const AddNote = () => {
         <i className="fa-solid fa-plus" style={{ marginRight: '10px' }}></i>
         <h2>Add a Note</h2>
       </div>
-      <form style={{ borderRadius: '20px', height: '320px', border: '1px solid grey', alignItems: 'left' }}>
+      <form style={{ borderRadius: '20px', height: '380px', border: '1px solid grey', alignItems: 'left' }} onSubmit={handleSubmit}>
         <br />
         <div className="mb-3 my-3 mx-3">
           <label htmlFor="title" className="form-label">
@@ -53,8 +53,21 @@ const AddNote = () => {
             style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
           />
         </div>
-        <button type="submit" className="btn btn-dark my-3 mx-3" onClick={handleClick}>
-          Submit
+        <div className="mb-3 mx-3">
+          <label htmlFor="tag" className="form-label">
+            Tag
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="tag"
+            name="tag"
+            onChange={onChange}
+            style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
+          />
+        </div>
+        <button type="submit" className="btn btn-dark my-3 mx-3">
+          Add Note
         </button>
       </form>
       <br />
