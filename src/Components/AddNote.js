@@ -37,7 +37,7 @@ const AddNote = () => {
             name="title"
             aria-describedby="emailHelp"
             style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
-            onChange={onChange}
+            onChange={onChange}minLength={5} required 
           />
         </div>
         <div className="mb-3 mx-3">
@@ -49,7 +49,7 @@ const AddNote = () => {
             className="form-control"
             id="description"
             name="description"
-            onChange={onChange}
+            onChange={onChange}minLength={5} required 
             style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
           />
         </div>
@@ -62,11 +62,11 @@ const AddNote = () => {
             className="form-control"
             id="tag"
             name="tag"
-            onChange={onChange}
+            onChange={onChange}minLength={5} required 
             style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
           />
         </div>
-        <button type="submit" className="btn btn-dark my-3 mx-3">
+        <button disabled={note.title.length<5 || note.description.length} type="submit" className="btn btn-dark my-3 mx-3">
           Add Note
         </button>
       </form>

@@ -4,20 +4,19 @@ import Noteitem from './Noteitem';
 
 const Notes = () => {
   const context = useContext(noteContext);
-  const { notes, getNotes , editNote} = context;
+  const { notes, getNotes, editNote } = context;
 
   useEffect(() => {
     getNotes();
     // eslint-disable-next-line 
   }, []);
 
-  const [note, setNote] = useState({ id: "", edescription: '', etag: 'default' });
+  const [note, setNote] = useState({ id: "", etitle: '', edescription: '', etag: 'default' });
   const ref = useRef(null);
   const refClose = useRef(null);
-  
 
   const handleSubmit = (e) => {
-    console.log("Updating the Note", note)
+    console.log("Updating the Note", note);
     e.preventDefault();
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
@@ -27,11 +26,16 @@ const Notes = () => {
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
- 
+
   const updateNote = (currentNote) => {
     ref.current.click();
     // Add code to update the note here
-    setNote({id: currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etage:currentNote.tag});
+    setNote({
+      id: currentNote._id,
+      etitle: currentNote.title,
+      edescription: currentNote.description,
+      etag: currentNote.tag
+    });
   };
 
   return (
@@ -50,7 +54,7 @@ const Notes = () => {
               <form style={{ borderRadius: '20px', height: '380px', border: '1px solid grey', alignItems: 'left' }} onSubmit={handleSubmit}>
                 <br />
                 <div className="mb-3 my-3 mx-3">
-                  <label htmlFor="title" className="form-label">
+                  <label htmlFor="etitle" className="form-label">
                     Title
                   </label>
                   <input
@@ -59,13 +63,13 @@ const Notes = () => {
                     id="etitle"
                     name="etitle"
                     value={note.etitle}
-                    aria-describedby="emailHelp"
+                    aria-describedby="emailHelp" 
                     style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
-                    onChange={onChange}
+                    onChange={onChange} minLength={5} required 
                   />
                 </div>
                 <div className="mb-3 mx-3">
-                  <label htmlFor="desc" className="form-label">
+                  <label htmlFor="edescription" className="form-label">
                     Description
                   </label>
                   <input
@@ -74,12 +78,12 @@ const Notes = () => {
                     id="edescription"
                     name="edescription"
                     value={note.edescription}
-                    onChange={onChange}
+                    onChange={onChange}minLength={5} required 
                     style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
                   />
                 </div>
                 <div className="mb-3 mx-3">
-                  <label htmlFor="tag" className="form-label">
+                  <label htmlFor="etag" className="form-label">
                     Tag
                   </label>
                   <input
@@ -92,8 +96,8 @@ const Notes = () => {
                     style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
                   />
                 </div>
-                <button onClick={handleSubmit} type="submit" className="btn btn-primary">Update Note</button>
-              </form>  
+                <button onClick={handleSubmit} disabled={note.etitle.length<5 || note.edescription.length} type="submit" className="btn btn-primary">Update Note</button>
+              </form>
             </div>
             <div className="modal-footer">
               <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -106,13 +110,16 @@ const Notes = () => {
         <h2>Your Notes</h2>
       </div>
       <div className="row my-3">
-      {notes.lenth===0 && 'No notes to Display'}
-        {notes.map((note) => {
-          return <Noteitem key={note._id} updateNote={updateNote} note={note} />;
-        })}
+        <div className="container">
+          {notes.length === 0 && 'No notes to Display'}
+          {notes.map((note) => {
+            return <Noteitem key={note._id} updateNote={updateNote} note={note} />;
+          })}
+        </div>
       </div>
     </div>
   );
 };
 
 export default Notes;
+
