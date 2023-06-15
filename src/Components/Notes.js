@@ -111,17 +111,15 @@ const Notes = () => {
         </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-      <br/>
-      <br/>
+        <br />
+        <br />
         <h2>Your Notes</h2>
       </div>
-      <div className="row my-3" >
-        <div className="container" style={{ height: '100px', width:"1900px"}}>
-          {notes.length === 0 && 'No notes to Display'}
-          {notes.map((note) => {
-            return <Noteitem key={note._id} updateNote={updateNote} note={note} />;
-          })}
-        </div>
+      <div className="row my-3" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {notes.length === 0 && 'No notes to Display'}
+        {notes.map((note) => (
+          <Noteitem key={note._id} updateNote={updateNote} note={note} style={{flex: '0 0 auto', marginRight: '10px' }} />
+        ))}
       </div>
     </div>
   );

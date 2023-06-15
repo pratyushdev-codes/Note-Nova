@@ -22,8 +22,11 @@ const AddNote = () => {
       <br />
       <br />
       <div style={{ display: 'flex', alignItems: 'left' }}>
-        <i className="fa-solid fa-plus" style={{ marginRight: '10px' }}></i>
+       
         <h2>Add a Note</h2>
+        <br/>
+        <br/>
+        
       </div>
       <div className="row">
         <div className="col-md-6">
