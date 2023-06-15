@@ -16,11 +16,9 @@ const Notes = () => {
   const refClose = useRef(null);
 
   const handleSubmit = (e) => {
-    console.log("Updating the Note", note);
     e.preventDefault();
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
-    // Add code to handle form submission here
   };
 
   const onChange = (e) => {
@@ -29,7 +27,6 @@ const Notes = () => {
 
   const updateNote = (currentNote) => {
     ref.current.click();
-    // Add code to update the note here
     setNote({
       id: currentNote._id,
       etitle: currentNote.title,
@@ -63,9 +60,11 @@ const Notes = () => {
                     id="etitle"
                     name="etitle"
                     value={note.etitle}
-                    aria-describedby="emailHelp" 
+                    aria-describedby="emailHelp"
                     style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
-                    onChange={onChange} minLength={5} required 
+                    onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3 mx-3">
@@ -78,7 +77,9 @@ const Notes = () => {
                     id="edescription"
                     name="edescription"
                     value={note.edescription}
-                    onChange={onChange}minLength={5} required 
+                    onChange={onChange}
+                    minLength={5}
+                    required
                     style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
                   />
                 </div>
@@ -96,21 +97,26 @@ const Notes = () => {
                     style={{ backgroundColor: 'lightblue', borderRadius: '20px', border: '1px solid grey' }}
                   />
                 </div>
-                <button onClick={handleSubmit} disabled={note.etitle.length<5 || note.edescription.length} type="submit" className="btn btn-primary">Update Note</button>
+                <button disabled={note.etitle.length < 5 || note.edescription.length < 5} type="submit" className="btn btn-primary">
+                  Update Note
+                </button>
               </form>
             </div>
             <div className="modal-footer">
-              <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
             </div>
           </div>
         </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <i className="fa-regular fa-file" style={{ marginRight: '10px' }}></i>
+      <br/>
+      <br/>
         <h2>Your Notes</h2>
       </div>
-      <div className="row my-3">
-        <div className="container">
+      <div className="row my-3" >
+        <div className="container" style={{ height: '100px', width:"1900px"}}>
           {notes.length === 0 && 'No notes to Display'}
           {notes.map((note) => {
             return <Noteitem key={note._id} updateNote={updateNote} note={note} />;
@@ -122,4 +128,3 @@ const Notes = () => {
 };
 
 export default Notes;
-

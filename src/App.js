@@ -16,8 +16,9 @@ function App() {
       <NoteState>
       <Router>
         <Navbar />
-        <Alert message="Note Updated"/>
+        
         <Banner />
+        <Alert message="Note Updated"/>
          <div className='container'>
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -25,6 +26,7 @@ function App() {
         </Routes>
         </div>
       </Router>
+      
       </NoteState>
       
     
