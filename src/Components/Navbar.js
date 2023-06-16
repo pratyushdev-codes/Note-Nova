@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 
 export class Navbar extends Component {
   render() {
@@ -21,6 +21,10 @@ export class Navbar extends Component {
               <li className="nav-item mx-1"><Link className="nav-link active" to="/health">Contact</Link></li>
               <br/>
             </ul>
+            <form className ="d-flex">
+              <Link class='btn btn-primary mx-1' to="/login" role="button">Login</Link>
+              <Link class='btn btn-dark mx-1' to="/signup" role="button">Sign Up</Link>
+            </form>
           </div>
         </div>
       </nav>
