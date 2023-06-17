@@ -9,7 +9,7 @@ const Home = (props) => {
   return (
     <div>
     
-      <Banner />
+      
      <AddNote/>
     </div>
   );

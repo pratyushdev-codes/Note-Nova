@@ -22,7 +22,7 @@ function Login(props) {
     if (json.success) {
       localStorage.setItem('token', json.authtoken);
       navigate('/');
-      props.showAlert("Logged in with your account.", "");
+      props.showAlert("Logged in with your account. Enjoy NoteNova.", "");
     } else {
       props.showAlert("Invalid Credentials", "danger");
     }
@@ -34,19 +34,9 @@ function Login(props) {
 
   return (
     <div>
-      <div style={{ textAlign: 'center' }}>
-        <style>
-          {`
-            .banner-image {
-              width: 96vw;
-              object-fit: cover;
-              border-radius: 20px;
-            }
-          `}
-        </style>
-        <img src="./images/banner.jpg" className="banner-image img-fluid" alt="" />
-      </div>
-      <h1>Login</h1>
+      <center>
+        <h1>Login to your NoteNova account.</h1>
+      </center>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">

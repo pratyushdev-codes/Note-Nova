@@ -15,7 +15,7 @@ function Alert(props) {
         <div className="alert alert-light" role="alert" style={{ textAlign: "center", backgroundColor: '#7637A0', color: 'white', borderRadius: '100px', border: '1px solid black', width: '10%' }}>
           Status:
         </div>
-        <div className="alert alert-light" role="alert" style={{ borderRadius: '20px', width: '50%', marginLeft: '20px' , height:"60px"}}>
+        <div className="alert alert-light" role="alert" style={{ borderRadius: '20px', width: '60%', marginLeft: '20px' , height:"55px"}}>
           {props.alert && (
             <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
               <strong>{capitalize(props.alert.type)}</strong>: {props.alert.msg}

@@ -30,7 +30,7 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-
+          <Banner />
 
           <Alert alert={alert}/>
           <div className='container'>

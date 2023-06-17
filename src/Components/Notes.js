@@ -1,17 +1,23 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import noteContext from '../context/notes/noteContext';
 import Noteitem from './Noteitem';
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
+  const navigate = useNavigate();
+
   const { notes, getNotes, editNote } = context;
 
   useEffect(() => {
-    getNotes();
-    // eslint-disable-next-line 
+    if (localStorage.getItem('token')) {
+      getNotes();
+    } else {
+      navigate('/login');
+    }
   }, []);
 
-  const [note, setNote] = useState({ id: "", etitle: '', edescription: '', etag: 'default' });
+  const [note, setNote] = useState({ id: '', etitle: '', edescription: '', etag: 'default' });
   const ref = useRef(null);
   const refClose = useRef(null);
 
@@ -118,7 +124,7 @@ const Notes = () => {
       <div className="row my-3" style={{ display: 'flex', flexWrap: 'wrap' }}>
         {notes.length === 0 && 'No notes to Display'}
         {notes.map((note) => (
-          <Noteitem key={note._id} updateNote={updateNote} note={note} style={{flex: '0 0 auto', marginRight: '10px' }} />
+          <Noteitem key={note._id} updateNote={updateNote} note={note} style={{ flex: '0 0 auto', marginRight: '10px' }} />
         ))}
       </div>
     </div>
@@ -126,3 +132,4 @@ const Notes = () => {
 };
 
 export default Notes;
+   
